@@ -1,14 +1,26 @@
 # Todo App
 Simple "Todo app" using "Django", "Django Rest Framework", "MySQL", "React JS" + "Next JS" & "Flutter".
 
-## Database:
-"SQL" + "MySQL" for database.
+## Configure MySQL
+First install "mysqlclient".
+> pip install mysqlclient
 
-## API Development:
-"Django" & "Django Rest Framework" for api development.
+Second, configure "mysql" into "system.py".
+```python
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 
-## Frontend Development:
-"React JS" + "Next JS" for frontend development.
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'todo', # database name
+        'USER': 'root', 
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+```
 
-## Android:
-"Flutter" for android app development.
