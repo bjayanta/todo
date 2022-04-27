@@ -24,3 +24,14 @@ DATABASES = {
 }
 ```
 
+## API doc
+
+Task:
+
+| Description | Method | URL | 
+| ----------- | ------ | --- |
+| List | GET | http://localhost:8000/api/task/ |
+| Detail | GET | null |
+| Create | POST | null |
+| Update | PUT | null |
+| Delete | DELETE | null |
