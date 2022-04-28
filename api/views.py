@@ -1,6 +1,6 @@
 # from rest_framework.views import APIView
+# from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.response import Response
 from core.models import *
 from .serializers import *
 
@@ -11,6 +11,18 @@ from .serializers import *
 #         serializer = TaskSerializer(query, many=True)
 
 #         return Response(serializer.data)
+
+#     def post(self, request):
+#         inputs = request.data
+#         print(inputs)
+
+#         serializer = TaskSerializer(data=inputs)
+
+#         if serializer.is_valid():
+#             serializer.save() 
+#             return Response({"message": "Data has been saved."})
+
+#         return Response({"message": "Submited data is found."})
 
 class TaskView(ModelViewSet):
     serializer_class = TaskSerializer
