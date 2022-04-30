@@ -19,11 +19,22 @@ class GState with ChangeNotifier {
     http.Response response = await http.get(Uri.parse(baseUrl));
 
     if (response.statusCode == 200) {
-      final res = json.decode(response.body) as List;
+      final data = json.decode(response.body) as List;
+      List<Todo> getTodo = [];
 
-      print(response.body);
+      data.forEach((element) {
+        Todo todo = Todo(id: element['id'], title: element['title'], status: element['status']);
+        getTodo.add(todo);
+      });
+
+      _records = getTodo;
+      notifyListeners();
     } else {
       print("No data.");
     }
+  }
+
+  List<Todo> get todos {
+    return [..._records];
   }
 }

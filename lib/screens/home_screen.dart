@@ -13,12 +13,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() {
-    Provider.of<GState>(context).getRecords();
+    Provider.of<GState>(context, listen: false).getRecords();
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    final todoData = Provider.of<GState>(context).todos;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Home screen"),
@@ -30,6 +32,40 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(15),
+        child: ListView.builder(
+          itemCount: todoData.length,
+          itemBuilder: (context, index) {
+            final item = todoData[index];
+
+            return Card(
+              child: Padding(
+                padding: EdgeInsets.all(12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("${index + 1}."),
+                        SizedBox(width: 2,),
+                        Text("${item.title}.", style: TextStyle(color: (item.status == 'done') ? Colors.green : Colors.black),),
+                        // Text("(${item.status})"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        IconButton(onPressed: () {}, icon: Icon(Icons.edit, color: Colors.green,),),
+                        IconButton(onPressed: () {}, icon: Icon(Icons.delete, color: Colors.red,),),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
