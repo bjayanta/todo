@@ -25,5 +25,5 @@ from .serializers import *
 #         return Response({"message": "Submited data is found."})
 
 class TaskView(ModelViewSet):
+    queryset = Task.objects.all().order_by('-id')
     serializer_class = TaskSerializer
-    queryset = Task.objects.all()
