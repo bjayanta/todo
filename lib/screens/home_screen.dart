@@ -42,23 +42,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
             return Card(
               child: Padding(
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Text("${index + 1}."),
-                        SizedBox(width: 2,),
-                        Text("${item.title}.", style: TextStyle(color: (item.status == 'done') ? Colors.green : Colors.black),),
-                        // Text("(${item.status})"),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        IconButton(onPressed: () {}, icon: Icon(Icons.edit, color: Colors.green,),),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.delete, color: Colors.red,),),
-                      ],
+                    Text("${index + 1}.", style: TextStyle(color: (item.status == 'done') ? Colors.green : Colors.black)),
+                    SizedBox(width: 2),
+                    Text("${item.title}.", style: TextStyle(color: (item.status == 'done') ? Colors.green : Colors.black)),
+                    // Text("(${item.status})"),
+                    Spacer(),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                            return InputScreen(id: item.id);
+                          }));
+                        },
+                        icon: Icon(Icons.edit, color: Colors.green)),
+                    IconButton(
+                      onPressed: () {
+                        Provider.of<GState>(context, listen: false).deleteTodo(item.id);
+                      },
+                      icon: Icon(Icons.delete, color: Colors.red),
                     ),
                   ],
                 ),

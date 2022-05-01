@@ -12,3 +12,8 @@ Simple "Todo app" using "Django", "Django Rest Framework", "MySQL", "React JS" +
 
 ## Android:
 "Flutter" for android app development.
+
+## Process:
+ - Home screen
+ - Input screen (Add + Edit)
+ 
